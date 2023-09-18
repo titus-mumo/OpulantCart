@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
   const [darkMode, setDarkMode] = useState( JSON.parse(localStorage.getItem("darkMode")) || false);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+  const { total } = useCart()
+  const format = Intl.NumberFormat('en-US')
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -73,7 +76,7 @@ export const Header = () => {
                   <NavLink to="/" className={({isActive}) => isActive ? activeClass : inActiveClass } end>Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/cart" className={({isActive}) => isActive ? activeClass : inActiveClass }>Cart</NavLink>
+                <NavLink to="/cart" className={({ isActive }) => isActive ? activeClass : inActiveClass}>Cart: Kshs. { format.format(total)}</NavLink>
                 </li>
               </ul>
             </div>

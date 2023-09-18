@@ -9,7 +9,6 @@ export const Home = () => {
         try {
             setIsLoading(true)
             const response = await axios.get(`https://node-api-kqht.onrender.com/api/products`)
-            console.log(response.data)
             setProducts(response.data)
             setIsLoading(false)
         } catch (error) {
@@ -24,10 +23,10 @@ export const Home = () => {
 
 
   return (
-      <div className='flex flex-wrap justify-center'>
+      <div className='flex flex-wrap justify-start'>
           {isLoading? <p>Loading page...</p>:
               products.map((product) =>
-                  <ProductCard key={product.id} product={ product} />)
+                  <ProductCard key={product._id} product={ product} />)
           }
       </div>
   )
