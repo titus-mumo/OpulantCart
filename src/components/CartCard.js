@@ -4,13 +4,13 @@ import { useCart } from '../context/CartContext'
 export const CartCard = ({ product }) => {
     const format = Intl.NumberFormat('en-US')
     const { name, price, image } = product
-    const { removeFromCart } = useCart()
+    const { removeFromCart} = useCart()
     const [quantity, setQuantity] = useState(1)
   return (
       <div className="mx-10 my-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-normal flex-wrap align-middle">
           <div className=' mx-4 basis-1/6 p-1 rounded-t-lg'>
               <a href="/">
-                      <img className="rounded-t-lg h-40 w-40" src={image} alt={name}/>
+                    <img className="rounded-t-lg h-40 w-40" src={image} alt={name}/>
             </a>
           </div>
 

@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 export const ProductCard = ({ product }) => {
-  const [isInCart, setIsInCart] = useState(false)
-  const { _id, name, price, image } = product
+  const [isInCart, setIsInCart] = useState(false);
+  const { _id, name, price, image } = product;
   const {cartList, addToCart, removeFromCart} = useCart()
   const format = Intl.NumberFormat('en-US')
+  const quantity = 1;
+  const quantityData = {'id':product._id, 'quantity':quantity};
   const handleAddToCart = (product) => {
     addToCart(product)
   }
@@ -49,7 +51,7 @@ export const ProductCard = ({ product }) => {
             isInCart ?                     <span onClick={() => removeFromCart(product)} className="hover:cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 :bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-600">
                         Remove
                     </span>:
-              <span className="hover:cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => handleAddToCart(product)}>Add to cart</span>
+              <span className="hover:cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => handleAddToCart(product, quantityData)}>Add to cart</span>
           }
             
           </div>
